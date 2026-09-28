@@ -1,43 +1,32 @@
-# Estenio — Premium Blue
+# Estenio 2 — Redesign premium
 
-Portage Astro/React de la maquette bleue approuvée d’Estenio. La composition, les textes espagnols, l’image architecturale locale et les interactions de la référence sont conservés.
+Redesign Astro du site Estenio 2, fondé sur les contenus espagnols et les médias présents sur [Estenio 1](https://estenio.vercel.app/). Estenio 1 n’est pas modifié.
 
-## Démarrage
-
-Depuis la racine du projet :
+## Développement
 
 ```sh
 npm install
 npm run dev
+npm run build
+npm run preview
 ```
 
-La prévisualisation locale est disponible sur l’URL indiquée par Astro, généralement `http://localhost:4321`.
+## Correspondance Estenio 1 → Estenio 2
 
-## Commandes
+| Source | Destination dans le redesign |
+| --- | --- |
+| Hero, titre exact et paragraphe institutionnel | `Hero.astro`, avec l’architecture bleue comme illustration conceptuelle |
+| `Servicios`, quatre cartes, descriptions, images et pages d’origine | `ServiceShowcase.astro`, sélecteur accessible |
+| `SERVICIOS DE PENSIÓN`, offres Empresarial et Personal | `PensionOffers.astro` |
+| `NOSOTROS`, trois paragraphes, logo et photographie | `About.astro` |
+| `NUESTROS CLIENTES`, dix logos | `Clients.astro`, grille sans recadrage |
+| `ENCUENTRA LA SOLUCIÓN`, coordonnées, réseaux et formulaire | `Contact.astro` et `Footer.astro` |
+| Logo et navigation officielle | `Header.astro`, avec liens vers les pages d’origine |
 
-```sh
-npm run build      # génère dist/
-npm run preview    # sert le build localement
-npm run astro ...  # lance la CLI Astro
-```
+Les textes métier sont centralisés dans `src/content/estenio.ts`. Les images reprises de la source sont dans `public/assets/original/`. Le formulaire reste explicitement une prévisualisation : il valide les champs localement et n’envoie ni ne stocke aucune donnée.
 
-Versions utilisées lors du portage : Node `v24.14.0`, npm `11.9.0`, Astro `7.3.5`, `@astrojs/react` `7.0.0`, React `19.3.0`.
+La page conserve `noindex,nofollow` pendant la phase de preview.
 
-## Organisation
+## Validation
 
-- `src/pages/index.astro` assemble la page statique.
-- `src/components/` contient les sections Astro : Header, Hero, TrustStrip, FirmIntro, Expertise, Heritage, Audience, Method, Contact et Footer.
-- `src/components/react/` contient uniquement les sélecteurs interactifs de spécialités et de profils.
-- `src/styles/global.css` contient les variables, la direction visuelle et les règles responsive.
-- `public/assets/architecture.webp` est le visuel local du hero et de la section héritage.
-
-## Limites prévues
-
-- Le formulaire est volontairement une démonstration : il valide nativement les champs puis affiche un message local. Aucune requête d’envoi ou sauvegarde n’est déclenchée.
-- La page reste en `noindex,nofollow` et aucun domaine canonique, sitemap ou intégration CRM n’est configuré.
-- Le mot-symbole `estenio` est provisoire, conformément au brief ; aucun logo officiel n’a été inventé.
-- Aucun déploiement de production n’est configuré ou effectué.
-
-## Validation effectuée
-
-Le build Astro passe. La prévisualisation de production a été vérifiée à 1440, 1024, 768 et 390 px : pas de débordement horizontal, ancres présentes, image locale chargée, menu mobile fonctionnel, navigation clavier des onglets fonctionnelle, trois profils fonctionnels et formulaire sans envoi réseau.
+Le build Astro et le contrôle TypeScript doivent passer avant livraison. La vérification navigateur couvre 390, 768 et 1440 px : absence de débordement horizontal, chargement des images, navigation mobile, sélection clavier des services et validation locale du formulaire.

@@ -1,19 +1,21 @@
 <section class="contact" id="contacto">
   <div class="wrap">
     <div>
-      <div class="label">CONVERSEMOS</div>
-      <h2>El siguiente paso<br />empieza contigo.</h2>
-      <p>Cuéntanos qué necesitas resolver. Cada buena estrategia comienza con una conversación.</p>
-      <div class="details"><a href="tel:+525556820573">+52 (55) 5682 0573 ↗</a><a href="mailto:info@estenio.com.mx">info@estenio.com.mx ↗</a><span>Cracovia 72, San Ángel<br />Ciudad de México</span></div>
+      <div class="eyebrow">05 / CONTACTO</div>
+      <h2>ENCUENTRA LA SOLUCIÓN</h2>
+      <p>Por favor déjanos un mensaje y uno de nuestros representantes se pondrá en contacto contigo lo antes posible.</p>
+      <p class="demo-note">Formulario de previsualización: no se envían ni guardan datos y no se muestra confirmación de envío.</p>
+      <div class="details"><a href="mailto:info@estenio.com.mx">info@estenio.com.mx</a><a href="tel:5556820573">+52 (55) 5682 0573</a><a href="https://maps.app.goo.gl/UGFv7zfEMZZSfXzS6" rel="noreferrer">Calle Cracovia 72, San Ángel, Álvaro Obregón, 01000 Ciudad de México, CDMX</a></div>
+      <div class="social-links"><a href="https://www.facebook.com/estenioMX/">Facebook</a><a href="https://www.instagram.com/esteniomx/">Instagram</a><a href="https://www.linkedin.com/company/corporativo-estenio/posts/?feedView=all">LinkedIn</a></div>
     </div>
     <form id="contact-form">
-      <label>Nombre<input required name="name" autocomplete="name" placeholder="Tu nombre" /></label>
-      <label>Correo electrónico<input required type="email" name="email" autocomplete="email" placeholder="tu@empresa.com" /></label>
-      <label>Empresa<input name="company" autocomplete="organization" placeholder="Opcional" /></label>
-      <label>Teléfono<input type="tel" name="phone" autocomplete="tel" placeholder="+52" /></label>
-      <label class="full">¿En qué podemos ayudarte?<textarea required name="message" placeholder="Describe brevemente tu situación"></textarea></label>
-      <p class="demo-note full">Formulario de demostración. No se envían ni guardan datos.</p>
-      <button class="btn full" type="submit">Probar solicitud de contacto <span>↗</span></button>
+      <h3 class="full">CONTÁCTANOS</h3>
+      <label>Nombre*<input required name="name" autocomplete="name" /></label>
+      <label>Email*<input required type="email" name="email" autocomplete="email" /></label>
+      <label>Teléfono<input type="tel" name="phone" autocomplete="tel" /></label>
+      <label>Compañía<input name="company" autocomplete="organization" /></label>
+      <label class="full"><span class="sr-only">Mensaje*</span><textarea required name="message" aria-label="Mensaje*" placeholder="Mensaje*"></textarea></label>
+      <button class="btn full" type="submit">Enviar <span>↗</span></button>
       <div class="status full" role="status" id="status"></div>
     </form>
   </div>
@@ -24,6 +26,6 @@
   const status = document.querySelector('#status');
   form?.addEventListener('submit', (event) => {
     event.preventDefault();
-    if (status) status.textContent = 'Demostración completada. No se ha enviado ninguna solicitud.';
+    if (status) status.textContent = 'Previsualización únicamente: no se ha enviado ninguna solicitud.';
   });
 </script>

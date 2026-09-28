@@ -1,0 +1,15 @@
+---
+import { about } from '../content/estenio';
+---
+
+<section class="about-section content-section" id="nosotros" aria-labelledby="about-title">
+  <div class="wrap about-grid">
+    <div class="about-copy">
+      <span class="eyebrow">03 / NOSOTROS</span>
+      <h2 id="about-title">NOSOTROS</h2>
+      <img class="about-logo" src="/assets/original/nosotrosLogo.svg" alt="Corporativo Estenio" width="260" height="116" loading="lazy" />
+      {about.paragraphs.map((paragraph, index) => <p class:list={{ 'about-highlight': index === 2 }}>{paragraph}</p>)}
+    </div>
+    <div class="about-photo-wrap"><img class="about-photo" src="/assets/original/nosotrosFram.jpeg" alt="Monumento de la Revolución en Ciudad de México" width="1280" height="1600" loading="lazy" /></div>
+  </div>
+</section>

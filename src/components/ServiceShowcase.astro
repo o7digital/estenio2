@@ -1,0 +1,86 @@
+---
+import { services } from '../content/estenio';
+---
+
+<section class="services-section content-section" id="servicios" aria-labelledby="services-title">
+  <div class="wrap">
+    <div class="section-heading split-heading">
+      <div><span class="eyebrow">01 / SERVICIOS</span><h2 id="services-title">SERVICIOS</h2></div>
+      <p>Comprometemos nuestro tiempo, conocimiento y equipo altamente calificado a cada cliente.</p>
+    </div>
+    <div class="service-showcase">
+      <div class="service-tabs" role="tablist" aria-label="Servicios">
+    {services.map((service, index) => (
+      <button
+        class:list={['service-tab', { active: index === 0 }]}
+        type="button"
+        role="tab"
+        id={`service-tab-${service.id}`}
+        aria-selected={index === 0}
+        aria-controls={`service-panel-${service.id}`}
+        tabindex={index === 0 ? 0 : -1}
+        data-service-tab={service.id}
+      >
+        <span class="service-index">0{index + 1}</span>
+        <span class="service-title">{service.title}</span>
+        <span class="service-arrow" aria-hidden="true">↗</span>
+      </button>
+    ))}
+      </div>
+
+      <div class="service-panels">
+    {services.map((service, index) => (
+      <article
+        class:list={['service-panel', { active: index === 0 }]}
+        id={`service-panel-${service.id}`}
+        role="tabpanel"
+        aria-labelledby={`service-tab-${service.id}`}
+        data-service-panel={service.id}
+      >
+        <div class="service-panel-copy">
+          <span class="eyebrow">Servicio 0{index + 1}</span>
+          <h3>{service.title}</h3>
+          <p>{service.copy}</p>
+          <a class="inline-link" href={service.href}>Más información <span aria-hidden="true">↗</span></a>
+        </div>
+        <img src={service.image} alt={service.alt} width={service.width} height={service.height} loading={index === 0 ? 'eager' : 'lazy'} />
+      </article>
+    ))}
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  const showcase = document.querySelector('.service-showcase');
+  const tabs = [...document.querySelectorAll('[data-service-tab]')];
+  const panels = [...document.querySelectorAll('[data-service-panel]')];
+
+  showcase?.classList.add('js-ready');
+
+  const selectService = (id, moveFocus = false) => {
+    tabs.forEach((tab) => {
+      const active = tab.dataset.serviceTab === id;
+      tab.classList.toggle('active', active);
+      tab.setAttribute('aria-selected', String(active));
+      tab.tabIndex = active ? 0 : -1;
+    });
+    panels.forEach((panel) => {
+      const active = panel.dataset.servicePanel === id;
+      panel.hidden = !active;
+      panel.classList.toggle('active', active);
+      panel.setAttribute('aria-hidden', String(!active));
+    });
+    if (moveFocus) document.querySelector(`[data-service-tab="${id}"]`)?.focus();
+  };
+
+  tabs.forEach((tab, index) => {
+    tab.addEventListener('click', () => selectService(tab.dataset.serviceTab));
+    tab.addEventListener('keydown', (event) => {
+      if (!['ArrowDown', 'ArrowRight', 'ArrowUp', 'ArrowLeft', 'Home', 'End'].includes(event.key)) return;
+      event.preventDefault();
+      const next = event.key === 'Home' ? 0 : event.key === 'End' ? tabs.length - 1 : (index + (['ArrowDown', 'ArrowRight'].includes(event.key) ? 1 : -1) + tabs.length) % tabs.length;
+      selectService(tabs[next].dataset.serviceTab, true);
+    });
+  });
+</script>

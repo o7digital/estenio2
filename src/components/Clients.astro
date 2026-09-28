@@ -1,0 +1,14 @@
+---
+import { clients } from '../content/estenio';
+---
+
+<section class="clients-section content-section" aria-labelledby="clients-title">
+  <div class="wrap">
+    <div class="section-heading split-heading">
+      <div><span class="eyebrow">04 / REFERENCIAS</span><h2 id="clients-title">NUESTROS CLIENTES</h2></div>
+    </div>
+    <div class="client-grid">
+      {clients.map((client) => <div class="client-logo"><img src={client.image} alt={client.name} width="400" height="400" loading="eager" /></div>)}
+    </div>
+  </div>
+</section>

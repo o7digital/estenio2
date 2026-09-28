@@ -1,0 +1,24 @@
+---
+import { pensionOffers } from '../content/estenio';
+---
+
+<section class="content-section pension-section" id="pensiones" aria-labelledby="pension-title">
+  <div class="wrap">
+    <div class="section-heading split-heading">
+      <div><span class="eyebrow">02 / PENSIÓN</span><h2 id="pension-title">SERVICIOS DE PENSIÓN</h2></div>
+    </div>
+    <div class="pension-grid">
+      {pensionOffers.map((offer) => (
+        <article class="pension-card">
+          <div class="pension-image"><img src={offer.image} alt={offer.alt} width={offer.width} height={offer.height} loading="lazy" /></div>
+          <div class="pension-copy">
+            <h3>{offer.title}</h3>
+            <p class="pension-intro">{offer.intro}</p>
+            <p>{offer.copy}</p>
+            <a class="inline-link" href={offer.href}>Más información <span aria-hidden="true">↗</span></a>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>

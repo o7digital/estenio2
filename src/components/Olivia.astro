@@ -1,0 +1,77 @@
+---
+import { contact } from '../content/estenio';
+---
+
+<button class="olivia-launch" id="olivia-launch" type="button" aria-haspopup="dialog" aria-controls="olivia-dialog" aria-expanded="false" hidden>
+  <span aria-hidden="true">✦</span><span>Habla con Olivia</span>
+</button>
+<dialog class="olivia-dialog" id="olivia-dialog" aria-labelledby="olivia-title">
+  <div class="olivia-shell">
+    <header class="olivia-header">
+      <div><span class="olivia-avatar" aria-hidden="true">✦</span><div><h2 id="olivia-title">Olivia AI</h2><p>Asistente de Estenio</p></div></div>
+      <button id="olivia-close" type="button" aria-label="Cerrar conversación">×</button>
+    </header>
+    <div class="olivia-log" id="olivia-log" role="log" aria-live="polite" aria-relevant="additions" aria-label="Conversación con Olivia" tabindex="0">
+      <article class="olivia-message assistant"><b>Olivia</b><p>Hola, soy Olivia, la asistente de Estenio. Puedo orientarte sobre pensiones, auditoría, INFONAVIT y servicios legales. ¿En qué podemos ayudarte?</p></article>
+    </div>
+    <div class="olivia-suggestions" aria-label="Preguntas sugeridas">
+      <button type="button" data-olivia-prompt="¿Qué apoyo ofrece Estenio para planear mi pensión?">Mi pensión</button>
+      <button type="button" data-olivia-prompt="¿Qué servicios ofrece Estenio a las empresas?">Servicios para empresas</button>
+      <button type="button" data-olivia-prompt="¿Cómo puede ayudarme Estenio con INFONAVIT?">INFONAVIT</button>
+    </div>
+    <form class="olivia-form" id="olivia-form">
+      <label class="sr-only" for="olivia-input">Tu pregunta para Olivia</label>
+      <textarea id="olivia-input" name="message" rows="2" maxlength="4000" required placeholder="Escribe tu pregunta…" enterkeyhint="send"></textarea>
+      <button id="olivia-send" type="submit" aria-label="Enviar pregunta">↑</button>
+    </form>
+    <div class="olivia-status" id="olivia-status" role="status"></div>
+    <a class="olivia-contact" id="olivia-contact" href={`mailto:${contact.email}`} hidden>Contactar a un especialista de Estenio ↗</a>
+    <footer class="olivia-footer"><p>Orientación general. Un especialista valida tu caso.</p><button id="olivia-reset" type="button">Nueva conversación</button></footer>
+  </div>
+</dialog>
+<noscript><a class="olivia-nojs" href={`mailto:${contact.email}`}>Contacta a Estenio por email</a></noscript>
+
+<style>
+  .olivia-launch{position:fixed;right:24px;bottom:24px;z-index:30;display:flex;align-items:center;gap:12px;border:1px solid #ffffff30;border-radius:999px;padding:14px 22px;background:var(--navy);color:white;box-shadow:0 8px 28px #001c3240;font-size:14px;font-weight:700}
+  .olivia-launch>span:first-child{color:var(--ice);font-size:24px;line-height:1}
+  .olivia-launch:hover{background:var(--action)}
+  .olivia-launch[hidden]{display:none}
+  .olivia-dialog{position:fixed;inset:auto 24px 24px auto;margin:0;padding:0;border:1px solid var(--line);border-radius:18px;background:white;color:var(--ink);width:410px;max-width:calc(100vw - 32px);height:650px;max-height:calc(100dvh - 48px);box-shadow:0 20px 80px #001c3250;overflow:hidden}
+  .olivia-dialog::backdrop{background:#001c322b}
+  .olivia-shell{display:flex;flex-direction:column;height:100%;min-height:0}
+  .olivia-header{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:18px 20px;background:var(--navy);color:white;flex-shrink:0}
+  .olivia-header>div{display:flex;align-items:center;gap:12px}
+  .olivia-avatar{display:grid;place-items:center;width:40px;height:40px;border-radius:50%;background:#ffffff16;color:var(--ice);font-size:25px}
+  .olivia-header h2{margin:0;font:700 18px/1.2 Arial,sans-serif;letter-spacing:0}
+  .olivia-header p{margin:5px 0 0;color:#c5d9e7;font-size:12px;line-height:1.2}
+  #olivia-close{display:grid;place-items:center;width:36px;height:36px;border:0;border-radius:50%;background:#ffffff12;color:white;font-size:28px;line-height:1}
+  .olivia-log{flex:1;min-height:0;overflow-y:auto;overscroll-behavior:contain;padding:20px;background:var(--paper)}
+  .olivia-log :global(.olivia-message){margin:0 0 14px;padding:14px 16px;border:1px solid #e0e9ef;border-radius:14px;background:white;overflow-wrap:anywhere}
+  .olivia-log :global(.olivia-message.user){margin-left:25px;background:var(--navy);border-color:var(--navy);color:white}
+  .olivia-log :global(.olivia-message b){font-size:11px;color:var(--action)}
+  .olivia-log :global(.olivia-message.user b){color:var(--ice)}
+  .olivia-log :global(.olivia-message p){margin:6px 0 0;font-size:14px;line-height:1.6;white-space:pre-wrap}
+  .olivia-log :global(.olivia-source){display:block;margin-top:8px;font-size:12px;text-decoration:underline;color:var(--action)}
+  .olivia-suggestions{display:flex;flex-wrap:wrap;gap:6px;padding:12px 16px 0;flex-shrink:0}
+  .olivia-suggestions button{border:1px solid var(--line);border-radius:999px;background:white;color:var(--ink);padding:7px 10px;font-size:11px;line-height:1.3}
+  .olivia-suggestions button:hover{border-color:var(--action);color:var(--action)}
+  .olivia-form{display:flex;align-items:center;gap:10px;margin:0;padding:12px 16px 0;flex-shrink:0}
+  #olivia-input{min-height:60px;max-height:100px;resize:none;border:1px solid var(--line);border-radius:12px;padding:10px 12px;background:white;color:var(--ink);font-size:16px;line-height:1.35}
+  #olivia-input::placeholder{color:var(--muted)}
+  #olivia-input:focus{outline:2px solid var(--action);outline-offset:1px}
+  #olivia-send{flex-shrink:0;width:40px;height:40px;border:0;border-radius:50%;background:var(--action);color:white;font-size:22px}
+  button:disabled{opacity:.5;cursor:wait}
+  .olivia-status{padding:6px 16px 0;min-height:22px;font-size:11px;line-height:1.4;color:var(--muted);flex-shrink:0}
+  .olivia-status[data-error="true"]{color:#a22b31}
+  .olivia-contact{margin:6px 16px;padding:8px 10px;border:1px solid var(--line);border-radius:8px;font-size:12px;color:var(--action);flex-shrink:0}
+  .olivia-contact[hidden]{display:none}
+  .olivia-footer{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 16px 14px;flex-shrink:0;background:white;color:var(--ink)}
+  .olivia-footer p{margin:0;font-size:10px;line-height:1.4;color:var(--muted);max-width:170px}
+  .olivia-footer button{border:0;background:transparent;color:var(--action);padding:4px 0;font-size:11px;line-height:1.4;text-align:right}
+  .olivia-nojs{display:block;padding:12px;text-align:center;text-decoration:underline}
+  @media(max-width:700px){.olivia-launch{right:16px;bottom:16px;padding:13px 17px}.olivia-dialog{right:12px;bottom:12px;width:calc(100vw - 24px);max-width:none;height:650px;max-height:calc(100dvh - 24px)}.olivia-log{padding:16px}.olivia-header{padding:16px}}
+</style>
+
+<script>
+  import '../scripts/olivia';
+</script>

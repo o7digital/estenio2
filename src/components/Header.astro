@@ -47,7 +47,7 @@ import { navItems, serviceNavItems } from '../content/estenio';
     document.addEventListener('keydown', (event) => {
       if (event.key === 'Escape') {
         closeMenu();
-        nav.querySelectorAll('details[open]').forEach((details) => { details.open = false; });
+        nav.querySelectorAll<HTMLDetailsElement>('details[open]').forEach((details) => { details.open = false; });
       }
     });
   }

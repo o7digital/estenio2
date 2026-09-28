@@ -53,12 +53,12 @@ import { services } from '../content/estenio';
 
 <script>
   const showcase = document.querySelector('.service-showcase');
-  const tabs = [...document.querySelectorAll('[data-service-tab]')];
-  const panels = [...document.querySelectorAll('[data-service-panel]')];
+  const tabs = [...document.querySelectorAll<HTMLButtonElement>('[data-service-tab]')];
+  const panels = [...document.querySelectorAll<HTMLElement>('[data-service-panel]')];
 
   showcase?.classList.add('js-ready');
 
-  const selectService = (id, moveFocus = false) => {
+  const selectService = (id: string | undefined, moveFocus = false) => {
     tabs.forEach((tab) => {
       const active = tab.dataset.serviceTab === id;
       tab.classList.toggle('active', active);
@@ -71,7 +71,7 @@ import { services } from '../content/estenio';
       panel.classList.toggle('active', active);
       panel.setAttribute('aria-hidden', String(!active));
     });
-    if (moveFocus) document.querySelector(`[data-service-tab="${id}"]`)?.focus();
+    if (moveFocus) document.querySelector<HTMLButtonElement>(`[data-service-tab="${id}"]`)?.focus();
   };
 
   tabs.forEach((tab, index) => {

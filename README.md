@@ -27,6 +27,27 @@ Les textes métier sont centralisés dans `src/content/estenio.ts`. Les images r
 
 La page conserve `noindex,nofollow` pendant la phase de preview.
 
+## Olivia AI v2
+
+Le chat en espagnol appelle `/api/olivia`, une fonction Vercel qui authentifie
+les requêtes vers le moteur Python sur le VPS 1. Configurer côté serveur
+`OLIVIA_V2_URL=https://olivia.o7digitalgroup.com/v2` et `OLIVIA_INTERNAL_TOKEN`.
+Le navigateur ne reçoit jamais ce secret. L'instance Railway est conservée.
+
+Le profil Estenio et les informations métier de `lib/olivia-context.js` sont fixés
+par le serveur. Le moteur utilise le mode `estenio2-demo` pour répondre aux suivis
+avec l'historique des 12 derniers tours, conservé dans la session du navigateur.
+« Nueva conversación » remet cet historique à zéro. La démonstration ne collecte
+pas de leads et ne confirme aucun envoi ; elle propose l'email officiel pour
+contacter un spécialiste. Une panne affiche une erreur et garde la question pour
+réessayer, sans réponse IA simulée.
+
 ## Validation
 
 Le build Astro et le contrôle TypeScript doivent passer avant livraison. La vérification navigateur couvre 390, 768 et 1440 px : absence de débordement horizontal, chargement des images, navigation mobile, sélection clavier des services et validation locale du formulaire.
+
+```sh
+npm test
+npm run check
+npm run build
+```

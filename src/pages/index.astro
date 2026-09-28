@@ -1,0 +1,39 @@
+---
+import Audience from '../components/Audience.astro';
+import Contact from '../components/Contact.astro';
+import Expertise from '../components/Expertise.astro';
+import FirmIntro from '../components/FirmIntro.astro';
+import Footer from '../components/Footer.astro';
+import Header from '../components/Header.astro';
+import Heritage from '../components/Heritage.astro';
+import Hero from '../components/Hero.astro';
+import Method from '../components/Method.astro';
+import TrustStrip from '../components/TrustStrip.astro';
+import '../styles/global.css';
+---
+
+<!doctype html>
+<html lang="es-MX">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width" />
+		<meta name="robots" content="noindex,nofollow" />
+		<meta name="description" content="Una nueva experiencia para Corporativo Estenio. Seguridad Social, auditoría, defensa y pensiones." />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<title>Estenio — Certeza para lo que viene.</title>
+	</head>
+	<body>
+		<Header />
+		<main>
+			<Hero />
+			<TrustStrip />
+			<FirmIntro />
+			<Expertise />
+			<Heritage />
+			<Audience />
+			<Method />
+			<Contact />
+		</main>
+		<Footer />
+	</body>
+</html>
